@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<center>
+    <h2>dashbord</h2>
+    <h2>
+        <a href="{% url 'home'  %}">Home</a><br>
+
+    </h2>
+    <form action="/country/">
+<select name = 'region'>
+    <option>choose Region</option>
+    {% for i in r %}
+   <option value="{{i}}" > {{i}}</option>
+
+    {% endfor %}
+
+</select>
+
+    <select name = 'sector'>
+    <option>choose sector</option>
+    {% for i in s %}
+   <option value="{{i}}" > {{i}}</option>
+
+    {% endfor %}
+
+    </select>
+
+        <input type="submit" value="submit">
+</form>
+
+
+
+
+<table border="1" align="center">
+  <thead>
+
+  <th>Start Year</th>
+    <th>End Year</th>
+    <th>Intensity</th>
+    <th>Sector</th>
+
+      <th>Topic</th>
+    <th>Insight</th>
+    <th>Region</th>
+
+
+    <th>Impactt</th>
+    <th>Added</th>
+
+      <th>Publishedr</th>
+    <th>Country</th>
+    <th>Relevance</th>
+
+      <th>Pestle</th>
+    <th>Source</th>
+    <th>Title</th>
+      <th> Likelihood </th>
+
+  </thead>
+    <tbody>
+
+{% for i in data %}
+
+<tr>
+
+     <td>{{i.start_year}}</td>
+    <td>{{i.end_year}}</td>
+    <td>{{i.intensity}}</td>
+    <td>{{i.sector}}</td>
+    <td>{{i.topic}}</td>
+    <td>{{i.insight}}</td>
+    <td>{{i.region}}</td>
+
+
+    <td>{{i.impact}}</td>
+    <td>{{i.added}}</td>
+
+    <td>{{i.published}}</td>
+    <td>{{i.country}}</td>
+    <td>{{i.relevance}}</td>
+
+    <td>{{i.pestle}}</td>
+    <td>{{i.source}}</td>
+    <td>{{i.title}}</td>
+    <td>{{i.likelihood}}</td>
+
+  </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+<h3>
+   <div class="pagination">
+    <span class="step-links">
+        {% if data.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ data.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ data.number }} of {{ data.paginator.num_pages }}.
+        </span>
+
+        {% if data.has_next %}
+            <a href="?page={{ data.next_page_number }}">next</a>
+            <a href="?page={{ data.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</h3>
+
+</center>
+</body>
+</html>
